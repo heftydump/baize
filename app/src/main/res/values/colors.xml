@@ -3,4 +3,12 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="background">#282828</color>
+    <color name="backgroundBox">#323232</color>
+    <color name="scoreActive">#00AE65</color>
+    <color name="scoreInactive">#42564E</color>
+    <color name="textActive">#EDFEF9</color>
+    <color name="textInactive">#7E8B86</color>
+    <color name="redCount">#8B2E2E</color>
 </resources>

@@ -1,7 +1,453 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"/>
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:id="@+id/score_box"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_margin="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp">
+
+
+        <LinearLayout
+            android:id="@+id/p1_box"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.48"
+            android:background="@color/backgroundBox"
+            android:elevation="20dp"
+            android:gravity="center|end"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:gravity="bottom|end"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/p1_break_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|end">
+
+                    <TextView
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/mon_semibold"
+                        android:gravity="end"
+                        android:includeFontPadding="false"
+                        android:text="147"
+                        android:textColor="@color/textActive"
+                        android:textSize="24sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/open_sans_light"
+                    android:includeFontPadding="false"
+                    android:text="Player 1"
+                    android:textColor="@color/textActive"
+                    android:textSize="24sp" />
+
+                <View
+                    android:id="@+id/p1_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="@color/scoreActive" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/p1_score"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:background="@color/scoreActive"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingTop="-5dp"
+                android:text="147"
+                android:textColor="@color/textActive"
+                android:textSize="58sp"
+                app:fontFamily="@font/mon_semibold" />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/frames_box"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:gravity="bottom|center_horizontal"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp">
+
+            <TextView
+                android:id="@+id/best_of"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="(19)"
+                android:textColor="@color/textInactive"
+                android:textSize="28sp"
+                app:fontFamily="@font/mon_light" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/best_of"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="start"
+                    android:includeFontPadding="false"
+                    android:text="5"
+                    android:textColor="@color/textActive"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/mon_medium" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="end"
+                    android:includeFontPadding="false"
+                    android:text="3"
+                    android:textColor="@color/textActive"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/mon_medium" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/p2_box"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.48"
+            android:background="@color/backgroundBox"
+            android:elevation="20dp">
+
+            <TextView
+                android:id="@+id/p2_score"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:background="@color/scoreActive"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingTop="-5dp"
+                android:text="147"
+                android:textColor="@color/textActive"
+                android:textSize="58sp"
+                app:fontFamily="@font/mon_semibold" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:gravity="bottom|start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/open_sans_light"
+                    android:includeFontPadding="false"
+                    android:text="Player 2"
+                    android:textColor="@color/textActive"
+                    android:textSize="24sp" />
+
+                <View
+                    android:id="@+id/p2_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="@color/scoreActive" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.85"
+        android:padding="10dp">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/buttons_v"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/buttons_h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/b_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.20" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/b_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.80" />
+
+        <Button
+            android:id="@+id/b_red"
+            android:layout_width="0dp"
+
+            android:layout_height="0dp"
+            android:background="@drawable/b_red"
+
+            android:fontFamily="@font/mon_medium"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="15"
+            android:textColor="@color/redCount"
+            android:textSize="70sp"
+            android:textStyle="bold"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/b_left"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/b_yellow"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="3dp"
+
+            android:background="@drawable/b_yellow"
+
+            app:layout_constraintBottom_toTopOf="@id/buttons_h"
+            app:layout_constraintLeft_toRightOf="@id/b_left"
+            app:layout_constraintRight_toLeftOf="@+id/b_green"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:layout_constraintDimensionRatio="h,1:1" />
+
+        <Button
+            android:id="@+id/b_green"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="3dp"
+
+            android:background="@drawable/b_green_alt2"
+
+            app:layout_constraintBottom_toTopOf="@id/buttons_h"
+            app:layout_constraintLeft_toRightOf="@id/b_yellow"
+            app:layout_constraintRight_toLeftOf="@id/b_brown"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/b_brown"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="3dp"
+
+            android:background="@drawable/b_brown"
+            app:layout_constraintBottom_toTopOf="@id/buttons_h"
+            app:layout_constraintLeft_toRightOf="@+id/b_green"
+            app:layout_constraintRight_toLeftOf="@id/b_right"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/b_blue"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="3dp"
+
+            android:background="@drawable/b_blue"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/b_left"
+            app:layout_constraintRight_toLeftOf="@+id/b_pink"
+            app:layout_constraintTop_toBottomOf="@id/buttons_h"
+
+            app:layout_constraintDimensionRatio="h,1:1" />
+
+        <Button
+            android:id="@+id/b_pink"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="3dp"
+
+            android:background="@drawable/b_pink"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/b_blue"
+            app:layout_constraintRight_toLeftOf="@+id/b_black"
+            app:layout_constraintTop_toBottomOf="@id/buttons_h" />
+
+        <Button
+            android:id="@+id/b_black"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="3dp"
+
+            android:background="@drawable/b_black"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/b_pink"
+            app:layout_constraintRight_toLeftOf="@+id/b_right"
+            app:layout_constraintTop_toBottomOf="@id/buttons_h" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+
+            android:id="@+id/b_miss"
+            android:background="@drawable/b_miss"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/b_right"
+            app:layout_constraintRight_toRightOf="parent"
+
+            app:layout_constraintDimensionRatio="h,1:1"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/status_box"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:elevation="20dp"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.48">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:background="@color/backgroundBox"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="@color/scoreInactive" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="0.8"
+                    android:fontFamily="@font/open_sans_light"
+                    android:gravity="center|end"
+                    android:includeFontPadding="false"
+                    android:text="Available"
+                    android:textColor="@color/textActive"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:background="@color/scoreInactive"
+                android:fontFamily="@font/mon_semibold"
+                android:gravity="center"
+                android:text="147"
+                android:textColor="@color/textActive"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.48">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:background="@color/scoreInactive"
+                android:fontFamily="@font/mon_semibold"
+                android:gravity="center"
+                android:text="147"
+                android:textColor="@color/textActive"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:background="@color/backgroundBox"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="@color/scoreInactive" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="0.8"
+                    android:fontFamily="@font/open_sans_light"
+                    android:gravity="center|start"
+                    android:includeFontPadding="false"
+                    android:text="Remaining"
+                    android:textColor="@color/textActive"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
