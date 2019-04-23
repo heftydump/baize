@@ -70,6 +70,10 @@ public class MatchActivity extends AppCompatActivity {
         indicators = new View[2];
         indicators[0] = findViewById(R.id.p1_indicator);
         indicators[1] = findViewById(R.id.p2_indicator);
+
+        statusBox = new TextView[2];
+        statusBox[0] = findViewById(R.id.difference);
+        statusBox[1] = findViewById(R.id.remaining);
     }
 
     public void initButtons() {
@@ -148,18 +152,16 @@ public class MatchActivity extends AppCompatActivity {
         drawFrameBox();
         drawScores();
         drawButtons();
+        drawStatus();
     }
-
     public void drawScores() {
         scoreBoxes[0].setText("" + match.player(0).getScore());
         scoreBoxes[1].setText("" + match.player(1).getScore());
     }
-
     public void drawNames() {
         names[0].setText(""+match.player(0).getName());
         names[1].setText(""+match.player(1).getName());
     }
-
     public void drawPlayerBoxes() {
         int inactive = getResources().getColor(R.color.scoreInactive);
         int active = getResources().getColor(R.color.scoreActive);
@@ -172,14 +174,12 @@ public class MatchActivity extends AppCompatActivity {
         frameBox[0].setTextColor( (match.atTable() == 0) ? textActive : textInactive );
         frameBox[1].setTextColor( (match.atTable() == 1) ? textActive : textInactive );
     }
-
     public void drawFrameBox() {
         frameBox[0].setText("" + match.player(0).getFrames());
         frameBox[1].setText("" + match.player(1).getFrames());
         int bOf = (match.goal()*2)-1;
         frameBox[2].setText("(" + bOf + ")");
     }
-
     public void drawBreakBoxes() {
         breakBoxLeft[0].setText("" + match.player(0).currentBreak().getBreak());
         breakBoxLeft[0].setVisibility( ( match.atTable() == 0 ) ? View.VISIBLE : View.INVISIBLE );
@@ -193,9 +193,34 @@ public class MatchActivity extends AppCompatActivity {
             breakBoxRight[i].setVisibility( (match.player(1).currentBreak().getPottedQuantity(match.ball(i)) > 0) ? View.VISIBLE : View.GONE );
         }
     }
-
     public void drawButtons() {
-        Button red = findViewById(R.id.b_red);
-        red.setText(""+match.ball(match.red).getQuantity());
+        float active = 1f, inactive = .4f;
+
+        btn[1].setText(""+match.ball(Match.red).getQuantity());
+
+        switch(match.state()) {
+            case RED :
+                btn[1].setAlpha(active);
+                for( int i=2; i<8; i++ ) btn[i].setAlpha(inactive);
+                break;
+            case COLOUR :
+                btn[1].setAlpha(inactive);
+                for( int i=2; i<8; i++ ) btn[i].setAlpha(active);
+                break;
+            case CLEARANCE:
+                int lowest = match.lowestAvailableColour();
+                if( lowest == -1 )
+                    break;
+                btn[1].setAlpha(inactive);
+                for( int i=2; i<8; i++ )
+                    btn[i].setAlpha( (i == lowest) ? active : inactive );
+                break;
+        }
     }
+    public void drawStatus() {
+        statusBox[0].setText(""+match.difference());
+        statusBox[1].setText(""+match.remaining());
+    }
+
+
 }

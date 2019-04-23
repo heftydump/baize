@@ -48,19 +48,37 @@ public class Match {
         // starts a new frame
         rerack();
         history.clear();
+        plyr[0].setScore(0); plyr[1].setScore(0);
         plyr[0].miss(); plyr[1].miss();
         currentState = State.RED;
     }
     public void score(Ball potted) {
         // deals with pots
+
+        // is 'potted' the ball on?
+        if( currentState == State.RED && potted.getValue() != red
+                || currentState == State.COLOUR && potted.getValue() < yel
+                || currentState == State.CLEARANCE && potted.getValue() != lowestAvailableColour() )
+            return;
+
         plyr[turn].pot(potted);
-        if( potted.getValue() == red )
+        if( potted.getValue() == red ) {
             potted.removeOne();
+            currentState = State.COLOUR;
+        }
+        else if( potted.getValue() > red ) {
+            if( currentState == State.CLEARANCE )
+                potted.removeOne();
+            currentState = (ball[red].getQuantity() < 1) ? State.CLEARANCE : State.RED;
+        }
+        proceed();
     }
     public void miss() {
         // ends player turn
         plyr[turn].miss();
         next();
+        currentState = ( ball[red].getQuantity() < 1 ) ? State.CLEARANCE : State.RED;
+        proceed();
     }
     public void foul(Ball fouled) {
         // deals with fouls
@@ -72,7 +90,11 @@ public class Match {
     }
     public void proceed() {
         // continues frame
-
+        if( ball[blk].getQuantity() == 0 )
+            if( difference() == 0 )
+                ball[blk].addOne();
+            else
+                endFrame();
     }
     public void endFrame() {
         // ends the frame
@@ -86,9 +108,29 @@ public class Match {
 
     // BALL METHODS
     public void rerack() {
+        // put all the balls back on the table
         ball[1].setQuantity(15);
         for( int i=2; i<8; i++ )
             ball[i].setQuantity(1);
+    }
+
+    // MATCH-RELATED METHODS
+    public int lowestAvailableColour() {
+        // returns value of lowest available colour (-1 if table empty)
+        for( int i=2; i<8; i++ ) {
+            if (ball[i].getQuantity() > 0)
+                return ball[i].getValue();
+        }
+        return -1;
+    }
+    public int difference() {
+        return java.lang.Math.abs(plyr[0].getScore()-plyr[1].getScore());
+    }
+    public int remaining() {
+        int sum = ball[red].getQuantity()*8;
+        for( int i=2; i<8; i++ )
+            sum += ball[i].getValue()*ball[i].getQuantity();
+        return sum;
     }
 
 

@@ -154,8 +154,10 @@
                     android:layout_height="30dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/nunito_sans_extralight"
                     android:includeFontPadding="false"
+                    android:maxLines="1"
                     android:text="Player 1"
                     android:textColor="@color/textActive"
                     android:textSize="25sp" />
@@ -221,9 +223,10 @@
                     android:fontFamily="@font/nunito_sans_semibold"
                     android:gravity="center|start"
                     android:includeFontPadding="false"
-                    android:text="5"
+                    android:maxLines="1"
+                    android:text="15"
                     android:textColor="@color/textActive"
-                    android:textSize="20sp" />
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/p2_frames"
@@ -236,9 +239,10 @@
                     android:fontFamily="@font/nunito_sans_semibold"
                     android:gravity="center|end"
                     android:includeFontPadding="false"
+                    android:maxLines="1"
                     android:text="3"
                     android:textColor="@color/textActive"
-                    android:textSize="20sp" />
+                    android:textSize="22sp" />
 
             </LinearLayout>
 
@@ -390,8 +394,10 @@
                     android:layout_height="30dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginBottom="10dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/nunito_sans_extralight"
                     android:includeFontPadding="false"
+                    android:maxLines="1"
                     android:text="Player 2"
                     android:textColor="@color/textActive"
                     android:textSize="25sp" />
@@ -607,6 +613,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/difference"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:background="@color/scoreInactive"
@@ -631,6 +638,7 @@
             android:layout_weight="0.46">
 
             <TextView
+                android:id="@+id/remaining"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:background="@color/scoreInactive"
