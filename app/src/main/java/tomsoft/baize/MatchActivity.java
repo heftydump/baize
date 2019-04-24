@@ -101,7 +101,6 @@ public class MatchActivity extends AppCompatActivity {
         btn[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {   // miss button
-                vib.vibrate(vibTime);
                 match.miss();
                 draw();
             }

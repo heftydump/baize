@@ -96,11 +96,12 @@ public class Match {
     }
     public void proceed() {
         // continues frame
-        if( ball[blk].getQuantity() == 0 )
-            if( difference() == 0 )
+        if( ball[blk].getQuantity() == 0 ) {
+            if (difference() == 0)
                 ball[blk].addOne();
             else
                 endFrame();
+        }
     }
     public void undo() {
         if( history.isEmpty() )
@@ -112,7 +113,7 @@ public class Match {
             plyr[ lastAction.getPlayerID() ].subtractScore( lastAction.getBall().getValue() );
             plyr[ lastAction.getPlayerID() ].currentBreak().remove();
             // if clearance or red, place back on table
-            if( currentState == State.CLEARANCE || lastAction.getBall().getValue() == red )
+            if( lastAction.getBall().getValue() == red )
                 lastAction.getBall().addOne();
         }
         else if( lastAction instanceof Miss || lastAction instanceof Foul ) {
@@ -123,6 +124,14 @@ public class Match {
             // set turn back to previous player
             turn = lastAction.getPlayerID();
         }
+        if( currentState == State.CLEARANCE ) {
+            if (history.peek() instanceof Pot && lowestAvailableColour() == yel) {
+                currentState = State.COLOUR;
+                return;
+            }
+            lastAction.getBall().addOne();
+        }
+        currentState = (ball[red].getQuantity() < 1) ? State.CLEARANCE : State.RED;
     }
     public void endFrame() {
         // ends the frame

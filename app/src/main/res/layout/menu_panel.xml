@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|top"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:id="@+id/status_box"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="20dp"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.46">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:background="@color/backgroundBox"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="@color/scoreInactive" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="0.8"
+                    android:fontFamily="@font/nunito_sans_extralight"
+                    android:gravity="center|end"
+                    android:includeFontPadding="false"
+                    android:text="Difference"
+                    android:textColor="@color/textActive"
+                    android:textSize="19sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/difference"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:background="@color/scoreInactive"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingTop="5dp"
+                android:text="147"
+                android:textColor="@color/textActive"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.08"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:alpha="0.05"
+                android:background="@drawable/swipe" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.46">
+
+            <TextView
+                android:id="@+id/remaining"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:background="@color/scoreInactive"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingTop="5dp"
+                android:text="147"
+                android:textColor="@color/textActive"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:background="@color/backgroundBox"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="@color/scoreInactive" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="0.8"
+                    android:fontFamily="@font/nunito_sans_extralight"
+                    android:gravity="center|start"
+                    android:includeFontPadding="false"
+                    android:text="Remaining"
+                    android:textColor="@color/textActive"
+                    android:textSize="19sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/status_box"
+        android:layout_margin="5dp"
+        android:background="@color/backgroundBox"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="65dp"
+            android:layout_margin="10dp"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/b_rminus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/b_minus_red" />
+
+            <TextView
+                android:id="@+id/r_quant"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:gravity="center"
+                android:text="15"
+                android:textColor="@color/textActive"
+                android:textSize="20sp" />
+
+            <ImageButton
+                android:id="@+id/b_rplus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/b_plus_red" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="65dp"
+            android:layout_margin="10dp"
+            android:background="@color/scoreActive"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:text="Two Reds"
+            android:textColor="@color/textActive"
+            android:textSize="16sp" />
+
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="65dp"
+            android:layout_margin="10dp"
+            android:background="@color/scoreActive"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:text="Free Ball"
+            android:textColor="@color/textActive"
+            android:textSize="16sp" />
+
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="65dp"
+            android:layout_margin="10dp"
+            android:background="@color/scoreActive"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:text="Concede"
+            android:textColor="@color/textActive"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/stats_box"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/menu_box"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/backgroundBox"
+        android:elevation="10dp"
+        android:gravity="top"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:gravity="center"
+            android:text="Match Statistics"
+            android:textColor="@color/textActive"
+            android:textSize="22sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginBottom="5dp"
+            android:padding="3dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="0.3"
+                android:fontFamily="@font/nunito_sans_light"
+                android:gravity="end"
+                android:text="Player 1"
+                android:textColor="@color/textActive"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.08"
+                android:background="@color/scoreActive"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/textActive"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"
+                android:fontFamily="@font/nunito_sans_light"
+                android:gravity="center"
+                android:text="0    (1)    0"
+                android:textColor="@color/textActive"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.08"
+                android:background="@color/scoreActive"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/textActive"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.3"
+                android:fontFamily="@font/nunito_sans_light"
+                android:gravity="start"
+                android:text="Player 2"
+                android:textColor="@color/textActive"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:padding="3dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="0.3" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.08"
+                android:background="@color/scoreInactive"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/textActive"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"
+                android:fontFamily="@font/nunito_sans_light"
+                android:gravity="center"
+                android:text="Total points"
+                android:textColor="@color/textInactive"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.08"
+                android:background="@color/scoreInactive"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/textActive"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:padding="3dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="0.3" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.08"
+                android:background="@color/scoreInactive"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/textActive"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"
+                android:fontFamily="@font/nunito_sans_light"
+                android:gravity="center"
+                android:text="Balls potted"
+                android:textColor="@color/textInactive"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.08"
+                android:background="@color/scoreInactive"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/textActive"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:padding="3dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="0.3" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.08"
+                android:background="@color/scoreInactive"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/textActive"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"
+                android:fontFamily="@font/nunito_sans_light"
+                android:gravity="center"
+                android:text="Highest break"
+                android:textColor="@color/textInactive"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.08"
+                android:background="@color/scoreInactive"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/textActive"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:padding="3dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="0.3" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.08"
+                android:background="@color/scoreInactive"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/textActive"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"
+                android:fontFamily="@font/nunito_sans_light"
+                android:gravity="center"
+                android:text="Pot success"
+                android:textColor="@color/textInactive"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.08"
+                android:background="@color/scoreInactive"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/textActive"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.3" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
