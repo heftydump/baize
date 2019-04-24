@@ -24,8 +24,13 @@ public class Player
     public int getScore() { return this.score; }
     public void setScore(int score) { this.score = score; }
     public void addScore(int value) { this.score += value; }
+    public void subtractScore(int value) {
+        this.score -= value;
+        if( this.score < 0 ) this.score = 0;
+    }
 
     public Break currentBreak() { return breaks.peek(); }
+    public void breakPop() { if( !breaks.isEmpty() ) breaks.pop(); }    // pops last break from stack
 
     public int getFrames() { return frames.size(); }
 

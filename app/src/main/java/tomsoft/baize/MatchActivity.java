@@ -1,5 +1,7 @@
 package tomsoft.baize;
 
+import android.content.Context;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +18,10 @@ public class MatchActivity extends AppCompatActivity {
     TextView[] statusBox;
     View[] indicators;
     Button[] btn;
+    Button undo;
+
+    Vibrator vib;
+    int vibTime = 60;
 
     Match match;
 
@@ -24,7 +30,9 @@ public class MatchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match);
 
-        match = new Match("Mike David", "David Mike",19);
+        match = new Match( getIntent().getStringExtra("P1_NAME"),
+                            getIntent().getStringExtra("P2_NAME"),
+                            getIntent().getIntExtra("BEST_OF", 1));
         match.newFrame();
 
         initUI();
@@ -35,7 +43,7 @@ public class MatchActivity extends AppCompatActivity {
     // UI METHODS
     public void initUI() {
         names = new TextView[2];
-        names[0] = findViewById(R.id.p1_name);
+        names[0] = findViewById(R.id.p1_name_menu);
         names[1] = findViewById(R.id.p2_name);
 
         scoreBoxes = new TextView[2];
@@ -77,6 +85,8 @@ public class MatchActivity extends AppCompatActivity {
     }
 
     public void initButtons() {
+        vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
         btn = new Button[8];
         btn[0] = findViewById(R.id.b_miss);
         btn[1] = findViewById(R.id.b_red);
@@ -86,60 +96,126 @@ public class MatchActivity extends AppCompatActivity {
         btn[5] = findViewById(R.id.b_blue);
         btn[6] = findViewById(R.id.b_pink);
         btn[7] = findViewById(R.id.b_black);
+        undo = findViewById(R.id.b_undo);
 
         btn[0].setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {   // miss button
+                vib.vibrate(vibTime);
                 match.miss();
                 draw();
             }
         });
         btn[1].setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                match.score(match.ball(match.red));
+            public void onClick(View v) {   // red button (short press to pot)
+                match.score(match.ball(Match.red));
                 draw();
+            }
+        });
+        btn[1].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {    // red button (long press to foul)
+                match.foul(match.ball(Match.red));
+                draw();
+                return true;
             }
         });
         btn[2].setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                match.score(match.ball(match.yel));
+            public void onClick(View v) {   // yellow button (short press to pot)
+                match.score(match.ball(Match.yel));
                 draw();
+            }
+        });
+        btn[2].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {    // yellow button (long press to foul)
+                match.foul(match.ball(Match.yel));
+                draw();
+                return true;
             }
         });
         btn[3].setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                match.score(match.ball(match.grn));
+            public void onClick(View v) {       // you get the idea
+                match.score(match.ball(Match.grn));
                 draw();
+            }
+        });
+        btn[3].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                match.foul(match.ball(Match.grn));
+                draw();
+                return true;
             }
         });
         btn[4].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                match.score(match.ball(match.brn));
+                match.score(match.ball(Match.brn));
                 draw();
+            }
+        });
+        btn[4].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                match.foul(match.ball(Match.brn));
+                draw();
+                return true;
             }
         });
         btn[5].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                match.score(match.ball(match.blu));
+                match.score(match.ball(Match.blu));
                 draw();
+            }
+        });
+        btn[5].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                match.foul(match.ball(Match.blu));
+                draw();
+                return true;
             }
         });
         btn[6].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                match.score(match.ball(match.pnk));
+                match.score(match.ball(Match.pnk));
                 draw();
+            }
+        });
+        btn[6].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                match.foul(match.ball(Match.pnk));
+                draw();
+                return true;
             }
         });
         btn[7].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                match.score(match.ball(match.blk));
+                match.score(match.ball(Match.blk));
+                draw();
+            }
+        });
+        btn[7].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                match.foul(match.ball(Match.blk));
+                draw();
+                return true;
+            }
+        });
+        undo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vib.vibrate(vibTime);
+                match.undo();
                 draw();
             }
         });
@@ -221,6 +297,4 @@ public class MatchActivity extends AppCompatActivity {
         statusBox[0].setText(""+match.difference());
         statusBox[1].setText(""+match.remaining());
     }
-
-
 }

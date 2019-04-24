@@ -149,7 +149,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/p1_name"
+                    android:id="@+id/p1_name_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_marginEnd="10dp"
@@ -175,13 +175,12 @@
                 android:layout_width="125dp"
                 android:layout_height="match_parent"
                 android:background="@color/scoreActive"
-                android:fontFamily="@font/lato_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:paddingTop="-5dp"
                 android:text="147"
                 android:textColor="@color/textActive"
-                android:textSize="56sp"
+                android:textSize="60sp"
                 app:fontFamily="@font/nunito_sans_bold" />
 
 
@@ -260,13 +259,12 @@
                 android:layout_width="125dp"
                 android:layout_height="match_parent"
                 android:background="@color/scoreActive"
-                android:fontFamily="@font/lato_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:paddingTop="-5dp"
                 android:text="147"
                 android:textColor="@color/textActive"
-                android:textSize="56sp"
+                android:textSize="60sp"
                 app:fontFamily="@font/nunito_sans_bold" />
 
             <LinearLayout
@@ -420,13 +418,11 @@
         android:padding="10dp">
 
         <android.support.constraint.Guideline
-            android:id="@+id/buttons_v"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-
+            android:id="@+id/red_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintGuide_begin="640dp" />
+            app:layout_constraintGuide_percent="0.9" />
 
         <android.support.constraint.Guideline
             android:id="@+id/buttons_h"
@@ -470,6 +466,17 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/b_left"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/b_undo"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:layout_marginBottom="15dp"
+            android:alpha="0.5"
+            android:background="@drawable/b_undo"
+            app:layout_constraintBottom_toTopOf="@+id/b_miss"
+            app:layout_constraintLeft_toRightOf="@+id/red_center"
+            app:layout_constraintRight_toLeftOf="@+id/red_center" />
 
         <Button
             android:id="@+id/b_yellow"

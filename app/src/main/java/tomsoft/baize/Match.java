@@ -42,6 +42,7 @@ public class Match {
     public int goal() { return goal; }
     public int atTable() { return turn; }
     public State state() { return currentState; }
+    public String lastAction() { return (!history.isEmpty()) ? history.peek().getType() : "None"; }
 
     // FRAME METHODS
     public void newFrame() {
@@ -60,7 +61,7 @@ public class Match {
                 || currentState == State.COLOUR && potted.getValue() < yel
                 || currentState == State.CLEARANCE && potted.getValue() != lowestAvailableColour() )
             return;
-
+        history.push(new Pot(plyr[turn], potted));
         plyr[turn].pot(potted);
         if( potted.getValue() == red ) {
             potted.removeOne();
@@ -76,13 +77,18 @@ public class Match {
     public void miss() {
         // ends player turn
         plyr[turn].miss();
+        history.push(new Miss(plyr[turn]));
         next();
         currentState = ( ball[red].getQuantity() < 1 ) ? State.CLEARANCE : State.RED;
         proceed();
     }
     public void foul(Ball fouled) {
         // deals with fouls
-
+        plyr[turn].miss();
+        history.push(new Foul(plyr[turn], fouled));
+        next();
+        plyr[turn].addScore( (fouled.getValue() < 4) ? 4 : fouled.getValue() );
+        currentState = ( ball[red].getQuantity() < 1 ) ? State.CLEARANCE : State.RED;
     }
     public void next() {
         // switches turn
@@ -95,6 +101,28 @@ public class Match {
                 ball[blk].addOne();
             else
                 endFrame();
+    }
+    public void undo() {
+        if( history.isEmpty() )
+            return;
+
+        Action lastAction = history.pop();
+        if( lastAction instanceof Pot ) {
+            // remove potted points from score, remove potted ball from break
+            plyr[ lastAction.getPlayerID() ].subtractScore( lastAction.getBall().getValue() );
+            plyr[ lastAction.getPlayerID() ].currentBreak().remove();
+            // if clearance or red, place back on table
+            if( currentState == State.CLEARANCE || lastAction.getBall().getValue() == red )
+                lastAction.getBall().addOne();
+        }
+        else if( lastAction instanceof Miss || lastAction instanceof Foul ) {
+            // pop most recent break, subtract penalty points if foul
+            if( lastAction instanceof Foul )
+                plyr[turn].subtractScore( ( lastAction.getBall().getValue() < 4 ) ? 4 : lastAction.getBall().getValue() );
+            plyr[ lastAction.getPlayerID() ].breakPop();
+            // set turn back to previous player
+            turn = lastAction.getPlayerID();
+        }
     }
     public void endFrame() {
         // ends the frame
@@ -132,6 +160,4 @@ public class Match {
             sum += ball[i].getValue()*ball[i].getQuantity();
         return sum;
     }
-
-
 }

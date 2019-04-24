@@ -40,7 +40,7 @@
         android:paddingBottom="40dp">
 
         <EditText
-            android:id="@+id/p1_name"
+            android:id="@+id/p1_name_menu"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_alignParentTop="true"
@@ -54,10 +54,10 @@
             android:theme="@style/Theme.AppCompat.Light" />
 
         <EditText
-            android:id="@+id/p2_name"
+            android:id="@+id/p2_name_menu"
             android:layout_width="200dp"
             android:layout_height="50dp"
-            android:layout_below="@+id/p1_name"
+            android:layout_below="@+id/p1_name_menu"
             android:backgroundTint="@color/textInactive"
             android:fontFamily="@font/nunito_sans_light"
             android:hint="Player 2"
@@ -67,13 +67,58 @@
             android:textSize="20sp"
             android:theme="@style/Theme.AppCompat.Light" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/p2_name_menu"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/b_minus"
+
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:background="@color/scoreActive"
+
+                android:fontFamily="@font/nunito_sans_bold"
+                android:text="-"
+                android:textColor="@color/textActive"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/best_of"
+
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:gravity="center"
+                android:text="35"
+                android:textColor="@color/textActive"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/b_plus"
+
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:background="@color/scoreActive"
+                android:fontFamily="@font/nunito_sans_bold"
+                android:text="+"
+                android:textColor="@color/textActive"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
         <Button
             android:id="@+id/b_match"
             android:layout_width="100dp"
             android:layout_height="80dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/p1_name"
+            android:layout_toRightOf="@+id/p1_name_menu"
             android:background="@color/scoreActive"
             android:fontFamily="@font/nunito_sans_semibold"
             android:text="Match"
