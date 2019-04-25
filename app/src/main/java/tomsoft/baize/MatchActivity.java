@@ -1,6 +1,9 @@
 package tomsoft.baize;
+import tomsoft.baize.action.*;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+
 public class MatchActivity extends AppCompatActivity {
+
+    SlidingUpPanelLayout slidingMenu;
 
     TextView[] names;
     TextView[] scoreBoxes;
@@ -16,9 +23,12 @@ public class MatchActivity extends AppCompatActivity {
     TextView[] breakBoxLeft;
     TextView[] breakBoxRight;
     TextView[] statusBox;
+    TextView[] statisticsBox;
+    TextView rQuant;
     View[] indicators;
     Button[] btn;
     Button undo;
+    Button[] menuBtn;
 
     Vibrator vib;
     int vibTime = 60;
@@ -42,8 +52,11 @@ public class MatchActivity extends AppCompatActivity {
 
     // UI METHODS
     public void initUI() {
+        initMenu();
+        initSlidingPanel();
+
         names = new TextView[2];
-        names[0] = findViewById(R.id.p1_name_menu);
+        names[0] = findViewById(R.id.p1_name);
         names[1] = findViewById(R.id.p2_name);
 
         scoreBoxes = new TextView[2];
@@ -75,13 +88,107 @@ public class MatchActivity extends AppCompatActivity {
         frameBox[1] = findViewById(R.id.p2_frames);
         frameBox[2] = findViewById(R.id.best_of);
 
-        indicators = new View[2];
+        indicators = new View[3];
         indicators[0] = findViewById(R.id.p1_indicator);
         indicators[1] = findViewById(R.id.p2_indicator);
+        indicators[2] = findViewById(R.id.remain_indicator);
 
-        statusBox = new TextView[2];
+        statusBox = new TextView[3];
         statusBox[0] = findViewById(R.id.difference);
         statusBox[1] = findViewById(R.id.remaining);
+        statusBox[2] = findViewById(R.id.label_remaining);
+    }
+
+    public void initSlidingPanel() {
+        initMenu();
+        slidingMenu = findViewById(R.id.sliding_menu);
+        slidingMenu.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View panel, float slideOffset) {
+                drawMenu();
+                drawStatistics();
+            }
+            @Override
+            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+            }
+        });
+    }
+
+    public void initMenu() {
+        rQuant = findViewById(R.id.r_quant);
+        menuBtn = new Button[5];
+        menuBtn[0] = findViewById(R.id.b_rminus);
+        menuBtn[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if( match.ball(1).getQuantity() < 1 || match.state() == Match.State.FREE_BALL) return;
+                match.changeReds(-1);
+                drawMenu();
+                drawButtons();
+                drawStatus();
+            }
+        });
+        menuBtn[1] = findViewById(R.id.b_rplus);
+        menuBtn[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if( match.state() == Match.State.FREE_BALL ) return;
+                match.changeReds(1);
+                drawMenu();
+                drawButtons();
+                drawStatus();
+            }
+        });
+        menuBtn[3] = findViewById(R.id.b_freeball);
+        menuBtn[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if( !( match.lastAction() instanceof Foul) ) return;
+                match.freeBall();
+                slidingMenu.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+                drawButtons();
+                drawStatus();
+            }
+        });
+        menuBtn[4] = findViewById(R.id.b_concede);
+        menuBtn[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                match.concede();
+                                slidingMenu.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+                                draw();
+                                break;
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getWindow().getContext());
+                builder.setMessage("Concede the frame?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
+            }
+        });
+
+        statisticsBox = new TextView[13];
+        statisticsBox[0] = findViewById(R.id.p1_name_menu);
+        statisticsBox[1] = findViewById(R.id.p2_name_main);
+        statisticsBox[2] = findViewById(R.id.p1_score_menu);
+        statisticsBox[3] = findViewById(R.id.p2_score_menu);
+        statisticsBox[4] = findViewById(R.id.frames_menu);
+        statisticsBox[5] = findViewById(R.id.p1_total);
+        statisticsBox[6] = findViewById(R.id.p2_total);
+        statisticsBox[7] = findViewById(R.id.p1_pots);
+        statisticsBox[8] = findViewById(R.id.p2_pots);
+        statisticsBox[9] = findViewById(R.id.p1_highest);
+        statisticsBox[10] = findViewById(R.id.p2_highest);
+        statisticsBox[11] = findViewById(R.id.p1_success);
+        statisticsBox[12] = findViewById(R.id.p2_success);
     }
 
     public void initButtons() {
@@ -276,7 +383,7 @@ public class MatchActivity extends AppCompatActivity {
         switch(match.state()) {
             case RED :
                 btn[1].setAlpha(active);
-                for( int i=2; i<8; i++ ) btn[i].setAlpha(inactive);
+                for( int i=2; i<8; i++ ) { btn[i].setAlpha(inactive); btn[i].setText(""); }
                 break;
             case COLOUR :
                 btn[1].setAlpha(inactive);
@@ -287,13 +394,48 @@ public class MatchActivity extends AppCompatActivity {
                 if( lowest == -1 )
                     break;
                 btn[1].setAlpha(inactive);
-                for( int i=2; i<8; i++ )
-                    btn[i].setAlpha( (i == lowest) ? active : inactive );
+                for( int i=2; i<8; i++ ) {
+                    btn[i].setAlpha((i == lowest) ? active : inactive);
+                    btn[i].setText("");
+                }
+                break;
+            case FREE_BALL:
+                int on = ( match.ball(1).getQuantity() > 0 ) ? 1 : match.lowestAvailableColour();
+                for( int i=1; i<8; i++ ) {
+                    btn[i].setAlpha( (i == on) ? active : inactive );
+                }
+                btn[on].setText("F");
                 break;
         }
     }
     public void drawStatus() {
         statusBox[0].setText(""+match.difference());
         statusBox[1].setText(""+match.remaining());
+        String snookz = ( match.snookers() == 1 ) ? match.snookers() + " snooker" : match.snookers() + " snookers";
+        statusBox[2].setText( (match.snookers() > 0) ? "Remaining (" + snookz + ")" : "Remaining");
+
+        int enough = getResources().getColor(R.color.scoreInactive);
+        int notEnough = getResources().getColor(R.color.remainingRed);
+        statusBox[1].setBackgroundColor( ( match.difference() < match.remaining() ) ? enough : notEnough );
+        indicators[2].setBackgroundColor( ( match.difference() < match.remaining() ) ? enough : notEnough );
+    }
+    public void drawMenu() {
+        rQuant.setText(""+match.ball(Match.red).getQuantity());
+    }
+    public void drawStatistics() {
+        int bOf = (match.goal()*2)-1;
+        statisticsBox[0].setText(""+match.player(0).getName());
+        statisticsBox[1].setText(""+match.player(1).getName());
+        statisticsBox[2].setText(""+match.player(0).getScore());
+        statisticsBox[3].setText(""+match.player(1).getScore());
+        statisticsBox[4].setText(""+match.player(0).getFrames()+"   ("+bOf+")   "+match.player(1).getFrames());
+        statisticsBox[5].setText(""+match.player(0).getTotalPoints());
+        statisticsBox[6].setText(""+match.player(1).getTotalPoints());
+        statisticsBox[7].setText(""+match.player(0).getPottedBalls());
+        statisticsBox[8].setText(""+match.player(1).getPottedBalls());
+        statisticsBox[9].setText(""+match.player(0).getHighest().getBreak());
+        statisticsBox[10].setText(""+match.player(1).getHighest().getBreak());
+        statisticsBox[11].setText(""+(int)(match.player(0).getPotSuccess()*100)+"%");
+        statisticsBox[12].setText(""+(int)(match.player(1).getPotSuccess()*100)+"%");
     }
 }

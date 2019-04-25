@@ -56,7 +56,7 @@
                 android:paddingTop="5dp"
                 android:text="147"
                 android:textColor="@color/textActive"
-                android:textSize="24sp" />
+                android:textSize="26sp" />
 
         </LinearLayout>
 
@@ -92,7 +92,7 @@
                 android:paddingTop="5dp"
                 android:text="147"
                 android:textColor="@color/textActive"
-                android:textSize="24sp" />
+                android:textSize="26sp" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -103,11 +103,13 @@
                 android:orientation="vertical">
 
                 <View
+                    android:id="@+id/remain_indicator"
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
                     android:background="@color/scoreInactive" />
 
                 <TextView
+                    android:id="@+id/label_remaining"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginStart="10dp"
@@ -139,7 +141,7 @@
             android:layout_margin="10dp"
             android:gravity="center">
 
-            <ImageButton
+            <Button
                 android:id="@+id/b_rminus"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -155,7 +157,7 @@
                 android:textColor="@color/textActive"
                 android:textSize="20sp" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/b_rplus"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -174,6 +176,7 @@
             android:textSize="16sp" />
 
         <Button
+            android:id="@+id/b_freeball"
             android:layout_width="130dp"
             android:layout_height="65dp"
             android:layout_margin="10dp"
@@ -184,10 +187,11 @@
             android:textSize="16sp" />
 
         <Button
+            android:id="@+id/b_concede"
             android:layout_width="130dp"
             android:layout_height="65dp"
             android:layout_margin="10dp"
-            android:background="@color/scoreActive"
+            android:background="@color/remainingRed"
             android:fontFamily="@font/nunito_sans_semibold"
             android:text="Concede"
             android:textColor="@color/textActive"
@@ -227,6 +231,7 @@
             android:padding="3dp">
 
             <TextView
+                android:id="@+id/p1_name_menu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="10dp"
@@ -238,6 +243,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/p1_score_menu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.08"
@@ -249,6 +255,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/frames_menu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
@@ -259,6 +266,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/p2_score_menu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.08"
@@ -270,6 +278,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/p2_name_main"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
@@ -293,6 +302,7 @@
                 android:layout_weight="0.3" />
 
             <TextView
+                android:id="@+id/p1_total"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.08"
@@ -314,6 +324,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/p2_total"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.08"
@@ -343,6 +354,7 @@
                 android:layout_weight="0.3" />
 
             <TextView
+                android:id="@+id/p1_pots"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.08"
@@ -364,6 +376,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/p2_pots"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.08"
@@ -393,6 +406,7 @@
                 android:layout_weight="0.3" />
 
             <TextView
+                android:id="@+id/p1_highest"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.08"
@@ -414,6 +428,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/p2_highest"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.08"
@@ -443,13 +458,14 @@
                 android:layout_weight="0.3" />
 
             <TextView
+                android:id="@+id/p1_success"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.08"
                 android:background="@color/scoreInactive"
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:gravity="center"
-                android:text="0"
+                android:text="100%"
                 android:textColor="@color/textActive"
                 android:textSize="18sp" />
 
@@ -464,6 +480,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/p2_success"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.08"

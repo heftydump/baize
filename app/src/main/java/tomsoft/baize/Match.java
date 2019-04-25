@@ -1,4 +1,5 @@
 package tomsoft.baize;
+
 import tomsoft.baize.action.*;
 import java.util.Stack;
 
@@ -14,10 +15,10 @@ public class Match {
     enum State {
         RED,
         COLOUR,
-        CLEARANCE
+        CLEARANCE,
+        FREE_BALL
     }
-    private State currentState;
-
+    private Stack<State> stateHistory;
     private Stack<Action> history;  // action history
 
     public Match(String p1, String p2, int bestOf) {
@@ -31,6 +32,7 @@ public class Match {
             ball[i] = new Ball(i,1);
 
         history = new Stack<Action>();
+        stateHistory = new Stack<State>();
 
         goal = (bestOf + 1)/2;
         turn = 0;
@@ -41,8 +43,8 @@ public class Match {
     public Ball ball( int index ) { return ball[index]; }
     public int goal() { return goal; }
     public int atTable() { return turn; }
-    public State state() { return currentState; }
-    public String lastAction() { return (!history.isEmpty()) ? history.peek().getType() : "None"; }
+    public State state() { return stateHistory.peek(); }
+    public Action lastAction() { return ( !history.isEmpty() ) ? history.peek() : new Miss(plyr[1]); }
 
     // FRAME METHODS
     public void newFrame() {
@@ -51,57 +53,78 @@ public class Match {
         history.clear();
         plyr[0].setScore(0); plyr[1].setScore(0);
         plyr[0].miss(); plyr[1].miss();
-        currentState = State.RED;
+        plyr[0].changeShotCount(-1); plyr[1].changeShotCount(-1);
+        changeState(State.RED);
     }
     public void score(Ball potted) {
         // deals with pots
 
         // is 'potted' the ball on?
-        if( currentState == State.RED && potted.getValue() != red
-                || currentState == State.COLOUR && potted.getValue() < yel
-                || currentState == State.CLEARANCE && potted.getValue() != lowestAvailableColour() )
+        if( state() == State.RED && potted.getValue() != red
+                || state() == State.COLOUR && potted.getValue() < yel
+                || state() == State.CLEARANCE && potted.getValue() != lowestAvailableColour()
+                || state() == State.FREE_BALL && potted.getValue() != lowestAvailableBall())
             return;
         history.push(new Pot(plyr[turn], potted));
         plyr[turn].pot(potted);
-        if( potted.getValue() == red ) {
+        if( potted.getValue() == red || ( potted.getValue() > red && state() == State.CLEARANCE ) || state() == State.FREE_BALL )
             potted.removeOne();
-            currentState = State.COLOUR;
-        }
-        else if( potted.getValue() > red ) {
-            if( currentState == State.CLEARANCE )
-                potted.removeOne();
-            currentState = (ball[red].getQuantity() < 1) ? State.CLEARANCE : State.RED;
-        }
         proceed();
     }
     public void miss() {
         // ends player turn
-        plyr[turn].miss();
         history.push(new Miss(plyr[turn]));
+        if( state() == State.FREE_BALL ) {
+            int value = ( ball[red].getQuantity() < 1 ) ? lowestAvailableColour() : red ;
+            ball[value].removeOne();
+        }
+        plyr[turn].miss();
         next();
-        currentState = ( ball[red].getQuantity() < 1 ) ? State.CLEARANCE : State.RED;
         proceed();
     }
     public void foul(Ball fouled) {
         // deals with fouls
         plyr[turn].miss();
         history.push(new Foul(plyr[turn], fouled));
+        if( state() == State.FREE_BALL ) {
+            int value = ( ball[red].getQuantity() < 1 ) ? lowestAvailableColour() : red ;
+            ball[value].removeOne();
+        }
         next();
         plyr[turn].addScore( (fouled.getValue() < 4) ? 4 : fouled.getValue() );
-        currentState = ( ball[red].getQuantity() < 1 ) ? State.CLEARANCE : State.RED;
+        proceed();
     }
     public void next() {
         // switches turn
         turn = ( turn < 1 ) ? turn + 1 : 0;
     }
     public void proceed() {
-        // continues frame
+        // continues frame, determines next state from action history
         if( ball[blk].getQuantity() == 0 ) {
             if (difference() == 0)
                 ball[blk].addOne();
             else
                 endFrame();
         }
+        if( history.isEmpty() ) {
+            changeState(State.RED);
+            return;
+        }
+        if( history.peek() instanceof Pot ) {
+            if( history.peek().getBall().getValue() == red )
+                changeState(State.COLOUR);
+            else
+                changeState( ball[red].getQuantity() < 1 ? State.CLEARANCE : State.RED );
+        }
+        else if( history.peek() instanceof ChangeBall && state() == State.COLOUR )
+            return;
+        else if( history.peek() instanceof FreeBall ) {
+            changeState(State.FREE_BALL);
+            int value = (ball[red].getQuantity() > 0) ? 1 : lowestAvailableColour();
+            ball[value].addOne();
+        }
+        else
+            changeState(ball[red].getQuantity() < 1 ? State.CLEARANCE : State.RED);
     }
     public void undo() {
         if( history.isEmpty() )
@@ -112,8 +135,11 @@ public class Match {
             // remove potted points from score, remove potted ball from break
             plyr[ lastAction.getPlayerID() ].subtractScore( lastAction.getBall().getValue() );
             plyr[ lastAction.getPlayerID() ].currentBreak().remove();
+            plyr[ lastAction.getPlayerID() ].changePottedBalls(-1);
+            plyr[ lastAction.getPlayerID() ].changeTotalPoints(-lastAction.getBall().getValue());
+            plyr[ lastAction.getPlayerID() ].changeShotCount(-1);
             // if clearance or red, place back on table
-            if( lastAction.getBall().getValue() == red )
+            if( lastAction.getBall().getValue() == red || lowestAvailableColour() > 2 )
                 lastAction.getBall().addOne();
         }
         else if( lastAction instanceof Miss || lastAction instanceof Foul ) {
@@ -121,17 +147,27 @@ public class Match {
             if( lastAction instanceof Foul )
                 plyr[turn].subtractScore( ( lastAction.getBall().getValue() < 4 ) ? 4 : lastAction.getBall().getValue() );
             plyr[ lastAction.getPlayerID() ].breakPop();
+            plyr[ lastAction.getPlayerID() ].changeShotCount(-1);
             // set turn back to previous player
             turn = lastAction.getPlayerID();
         }
-        if( currentState == State.CLEARANCE ) {
-            if (history.peek() instanceof Pot && lowestAvailableColour() == yel) {
-                currentState = State.COLOUR;
-                return;
-            }
-            lastAction.getBall().addOne();
+        else if( lastAction instanceof ChangeBall ) {
+            int offset = lastAction.getBall().getQuantity();
+            int value = lastAction.getBall().getValue();
+            ball(value).setQuantity( ball(value).getQuantity() - offset );
         }
-        currentState = (ball[red].getQuantity() < 1) ? State.CLEARANCE : State.RED;
+        else if( lastAction instanceof FreeBall ) {
+            int value = ( ball[red].getQuantity() > 0 ) ? 1 : lowestAvailableColour();
+            ball[value].removeOne();
+        }
+        proceed();
+    }
+    public void changeState(State st) { stateHistory.push(st); }
+    public void concede() {
+        next();
+        plyr[turn].win(new Frame(frameCount, history));
+        newFrame();
+        frameCount++;
     }
     public void endFrame() {
         // ends the frame
@@ -141,6 +177,7 @@ public class Match {
             plyr[winner].win(new Frame(frameCount, history));
         }
         newFrame();
+        frameCount++;
     }
 
     // BALL METHODS
@@ -150,13 +187,31 @@ public class Match {
         for( int i=2; i<8; i++ )
             ball[i].setQuantity(1);
     }
+    public void changeReds(int offset) {
+        history.push(new ChangeBall(plyr[turn], new Ball(red, offset)));
+        ball[red].setQuantity(ball[red].getQuantity()+offset);
+        proceed();
+    }
 
     // MATCH-RELATED METHODS
+    public void freeBall() {
+        if( history.isEmpty() || !( history.peek() instanceof Foul) )
+            return;
+        history.push(new FreeBall(plyr[turn]));
+        proceed();
+    }
     public int lowestAvailableColour() {
         // returns value of lowest available colour (-1 if table empty)
         for( int i=2; i<8; i++ ) {
             if (ball[i].getQuantity() > 0)
                 return ball[i].getValue();
+        }
+        return -1;
+    }
+    public int lowestAvailableBall() {
+        // returns value lowest available BALL (or -1)
+        for( int i=1; i<8; i++ ) {
+            if (ball[i].getQuantity() > 0) return ball[i].getValue();
         }
         return -1;
     }
@@ -168,5 +223,9 @@ public class Match {
         for( int i=2; i<8; i++ )
             sum += ball[i].getValue()*ball[i].getQuantity();
         return sum;
+    }
+    public int snookers() {
+        double lowestFoul = ( lowestAvailableColour() < 4) ? 4 : lowestAvailableColour();
+        return (int) java.lang.Math.ceil( ( difference()-remaining() ) / lowestFoul );
     }
 }

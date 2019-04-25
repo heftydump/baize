@@ -8,6 +8,11 @@ public class Break {
     public Break() {
         balls = new Stack<>();
     }
+    public Break( Break brk ) {
+        balls = new Stack<>();
+        for( Ball b : brk.balls )
+            this.balls.push(b);
+    }
 
     public void add(Ball b) {
         balls.push(b);
@@ -15,6 +20,7 @@ public class Break {
     public void remove() {
         balls.pop();
     }
+    public Ball peek() { return balls.peek(); }
     public void clear() {
         balls.clear();
     }
@@ -31,4 +37,5 @@ public class Break {
             sum =  (i.getValue() == b.getValue() ) ? sum + 1 : sum ;
         return sum;
     }
+    public boolean isEmpty() { return balls.isEmpty(); }
 }

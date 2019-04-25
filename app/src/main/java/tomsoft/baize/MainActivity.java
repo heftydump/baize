@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity
 
     void initMenu() {
         plyrName = new TextView[2];
-        plyrName[0] = findViewById(R.id.p1_name_menu);
-        plyrName[1] = findViewById(R.id.p2_name_menu);
+        plyrName[0] = findViewById(R.id.p1_name_main);
+        plyrName[1] = findViewById(R.id.p2_name_main);
 
         bestOf = findViewById(R.id.best_of);
         bestOf.setText(""+best);
