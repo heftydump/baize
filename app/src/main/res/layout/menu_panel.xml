@@ -173,7 +173,7 @@
             android:fontFamily="@font/nunito_sans_semibold"
             android:text="Two Reds"
             android:textColor="@color/textActive"
-            android:textSize="16sp" />
+            android:textSize="16dp" />
 
         <Button
             android:id="@+id/b_freeball"
@@ -184,7 +184,7 @@
             android:fontFamily="@font/nunito_sans_semibold"
             android:text="Free Ball"
             android:textColor="@color/textActive"
-            android:textSize="16sp" />
+            android:textSize="16dp" />
 
         <Button
             android:id="@+id/b_concede"
@@ -195,7 +195,7 @@
             android:fontFamily="@font/nunito_sans_semibold"
             android:text="Concede"
             android:textColor="@color/textActive"
-            android:textSize="16sp" />
+            android:textSize="16dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -216,17 +216,17 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="28dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/nunito_sans_semibold"
             android:gravity="center"
             android:text="Match Statistics"
             android:textColor="@color/textActive"
-            android:textSize="22sp" />
+            android:textSize="22dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="34dp"
             android:layout_marginBottom="5dp"
             android:padding="3dp">
 
@@ -240,7 +240,7 @@
                 android:gravity="end"
                 android:text="Player 1"
                 android:textColor="@color/textActive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/p1_score_menu"
@@ -252,7 +252,7 @@
                 android:gravity="center"
                 android:text="0"
                 android:textColor="@color/textActive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/frames_menu"
@@ -263,7 +263,7 @@
                 android:gravity="center"
                 android:text="0    (1)    0"
                 android:textColor="@color/textActive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/p2_score_menu"
@@ -275,7 +275,7 @@
                 android:gravity="center"
                 android:text="0"
                 android:textColor="@color/textActive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/p2_name_main"
@@ -287,12 +287,12 @@
                 android:gravity="start"
                 android:text="Player 2"
                 android:textColor="@color/textActive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="30dp"
             android:padding="3dp">
 
             <View
@@ -309,9 +309,10 @@
                 android:background="@color/scoreInactive"
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:text="0"
                 android:textColor="@color/textActive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="0dp"
@@ -319,9 +320,10 @@
                 android:layout_weight="0.25"
                 android:fontFamily="@font/nunito_sans_light"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:text="Total points"
                 android:textColor="@color/textInactive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/p2_total"
@@ -331,9 +333,10 @@
                 android:background="@color/scoreInactive"
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:text="0"
                 android:textColor="@color/textActive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <View
                 android:layout_width="0dp"
@@ -344,7 +347,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="30dp"
             android:padding="3dp">
 
             <View
@@ -361,9 +364,10 @@
                 android:background="@color/scoreInactive"
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:text="0"
                 android:textColor="@color/textActive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="0dp"
@@ -371,9 +375,10 @@
                 android:layout_weight="0.25"
                 android:fontFamily="@font/nunito_sans_light"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:text="Balls potted"
                 android:textColor="@color/textInactive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/p2_pots"
@@ -383,9 +388,10 @@
                 android:background="@color/scoreInactive"
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:text="0"
                 android:textColor="@color/textActive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <View
                 android:layout_width="0dp"
@@ -396,7 +402,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="30dp"
             android:padding="3dp">
 
             <View
@@ -413,9 +419,10 @@
                 android:background="@color/scoreInactive"
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:text="0"
                 android:textColor="@color/textActive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="0dp"
@@ -423,9 +430,10 @@
                 android:layout_weight="0.25"
                 android:fontFamily="@font/nunito_sans_light"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:text="Highest break"
                 android:textColor="@color/textInactive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/p2_highest"
@@ -435,9 +443,10 @@
                 android:background="@color/scoreInactive"
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:text="0"
                 android:textColor="@color/textActive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <View
                 android:layout_width="0dp"
@@ -448,7 +457,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="30dp"
             android:padding="3dp">
 
             <View
@@ -465,9 +474,10 @@
                 android:background="@color/scoreInactive"
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:text="100%"
                 android:textColor="@color/textActive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="0dp"
@@ -475,9 +485,10 @@
                 android:layout_weight="0.25"
                 android:fontFamily="@font/nunito_sans_light"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:text="Pot success"
                 android:textColor="@color/textInactive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/p2_success"
@@ -487,9 +498,10 @@
                 android:background="@color/scoreInactive"
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:text="0"
                 android:textColor="@color/textActive"
-                android:textSize="18sp" />
+                android:textSize="18dp" />
 
             <View
                 android:layout_width="0dp"

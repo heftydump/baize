@@ -1,5 +1,6 @@
 <com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:sothree="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sliding_menu"
     android:keepScreenOn="true"
     android:layout_width="match_parent"
@@ -10,9 +11,7 @@
     sothree:umanoPanelHeight="50dp"
     sothree:umanoShadowHeight="0dp">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
@@ -51,7 +50,7 @@
                     <LinearLayout
                         android:id="@+id/p1_break_box"
                         android:layout_width="wrap_content"
-                        android:layout_height="27sp"
+                        android:layout_height="27dp"
                         android:gravity="center_vertical|end">
 
                         <TextView
@@ -64,8 +63,8 @@
                             android:includeFontPadding="true"
                             android:text="1"
                             android:textColor="@color/textActive"
-                            android:textSize="12sp"
-                            app:fontFamily="@font/nunito_sans_bold" />
+                            android:textSize="12dp"
+                            sothree:fontFamily="@font/nunito_sans_bold" />
 
                         <TextView
                             android:id="@+id/p1_pink"
@@ -77,8 +76,8 @@
                             android:includeFontPadding="true"
                             android:text="1"
                             android:textColor="@color/textActive"
-                            android:textSize="12sp"
-                            app:fontFamily="@font/nunito_sans_bold" />
+                            android:textSize="12dp"
+                            sothree:fontFamily="@font/nunito_sans_bold" />
 
                         <TextView
                             android:id="@+id/p1_blue"
@@ -90,8 +89,8 @@
                             android:includeFontPadding="true"
                             android:text="1"
                             android:textColor="@color/textActive"
-                            android:textSize="12sp"
-                            app:fontFamily="@font/nunito_sans_bold" />
+                            android:textSize="12dp"
+                            sothree:fontFamily="@font/nunito_sans_bold" />
 
                         <TextView
                             android:id="@+id/p1_brown"
@@ -103,8 +102,8 @@
                             android:includeFontPadding="true"
                             android:text="1"
                             android:textColor="@color/textActive"
-                            android:textSize="12sp"
-                            app:fontFamily="@font/nunito_sans_bold" />
+                            android:textSize="12dp"
+                            sothree:fontFamily="@font/nunito_sans_bold" />
 
                         <TextView
                             android:id="@+id/p1_green"
@@ -116,8 +115,8 @@
                             android:includeFontPadding="true"
                             android:text="1"
                             android:textColor="@color/textActive"
-                            android:textSize="12sp"
-                            app:fontFamily="@font/nunito_sans_bold" />
+                            android:textSize="12dp"
+                            sothree:fontFamily="@font/nunito_sans_bold" />
 
                         <TextView
                             android:id="@+id/p1_yellow"
@@ -129,8 +128,8 @@
                             android:includeFontPadding="true"
                             android:text="1"
                             android:textColor="@color/textDark"
-                            android:textSize="12sp"
-                            app:fontFamily="@font/nunito_sans_bold" />
+                            android:textSize="12dp"
+                            sothree:fontFamily="@font/nunito_sans_bold" />
 
                         <TextView
                             android:id="@+id/p1_red"
@@ -142,8 +141,8 @@
                             android:includeFontPadding="true"
                             android:text="1"
                             android:textColor="@color/textActive"
-                            android:textSize="12sp"
-                            app:fontFamily="@font/nunito_sans_bold" />
+                            android:textSize="12dp"
+                            sothree:fontFamily="@font/nunito_sans_bold" />
 
                         <TextView
                             android:id="@+id/p1_break"
@@ -156,7 +155,7 @@
                             android:includeFontPadding="false"
                             android:text="147"
                             android:textColor="@color/textActive"
-                            android:textSize="24sp" />
+                            android:textSize="24dp" />
 
                     </LinearLayout>
 
@@ -172,7 +171,7 @@
                         android:maxLines="1"
                         android:text="Player 1"
                         android:textColor="@color/textActive"
-                        android:textSize="25sp" />
+                        android:textSize="25dp" />
 
                     <View
                         android:id="@+id/p1_indicator"
@@ -192,8 +191,8 @@
                     android:paddingTop="-5dp"
                     android:text="147"
                     android:textColor="@color/textActive"
-                    android:textSize="60sp"
-                    app:fontFamily="@font/nunito_sans_bold" />
+                    android:textSize="60dp"
+                    sothree:fontFamily="@font/nunito_sans_bold" />
 
 
             </LinearLayout>
@@ -215,7 +214,7 @@
                     android:includeFontPadding="false"
                     android:text="(19)"
                     android:textColor="@color/textInactive"
-                    android:textSize="24sp" />
+                    android:textSize="24dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -237,7 +236,7 @@
                         android:maxLines="1"
                         android:text="15"
                         android:textColor="@color/textActive"
-                        android:textSize="22sp" />
+                        android:textSize="22dp" />
 
                     <TextView
                         android:id="@+id/p2_frames"
@@ -253,7 +252,7 @@
                         android:maxLines="1"
                         android:text="3"
                         android:textColor="@color/textActive"
-                        android:textSize="22sp" />
+                        android:textSize="22dp" />
 
                 </LinearLayout>
 
@@ -276,8 +275,8 @@
                     android:paddingTop="-5dp"
                     android:text="147"
                     android:textColor="@color/textActive"
-                    android:textSize="60sp"
-                    app:fontFamily="@font/nunito_sans_bold" />
+                    android:textSize="60dp"
+                    sothree:fontFamily="@font/nunito_sans_bold" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -289,7 +288,7 @@
                     <LinearLayout
                         android:id="@+id/p2_break_box"
                         android:layout_width="wrap_content"
-                        android:layout_height="27sp"
+                        android:layout_height="27dp"
                         android:gravity="center_vertical|start">
 
                         <TextView
@@ -303,7 +302,7 @@
                             android:includeFontPadding="false"
                             android:text="147"
                             android:textColor="@color/textActive"
-                            android:textSize="24sp" />
+                            android:textSize="24dp" />
 
                         <TextView
                             android:id="@+id/p2_red"
@@ -315,8 +314,8 @@
                             android:includeFontPadding="true"
                             android:text="1"
                             android:textColor="@color/textActive"
-                            android:textSize="12sp"
-                            app:fontFamily="@font/nunito_sans_bold" />
+                            android:textSize="12dp"
+                            sothree:fontFamily="@font/nunito_sans_bold" />
 
                         <TextView
                             android:id="@+id/p2_yellow"
@@ -328,8 +327,8 @@
                             android:includeFontPadding="true"
                             android:text="1"
                             android:textColor="@color/textDark"
-                            android:textSize="12sp"
-                            app:fontFamily="@font/nunito_sans_bold" />
+                            android:textSize="12dp"
+                            sothree:fontFamily="@font/nunito_sans_bold" />
 
                         <TextView
                             android:id="@+id/p2_green"
@@ -341,8 +340,8 @@
                             android:includeFontPadding="true"
                             android:text="1"
                             android:textColor="@color/textActive"
-                            android:textSize="12sp"
-                            app:fontFamily="@font/nunito_sans_bold" />
+                            android:textSize="12dp"
+                            sothree:fontFamily="@font/nunito_sans_bold" />
 
                         <TextView
                             android:id="@+id/p2_brown"
@@ -354,8 +353,8 @@
                             android:includeFontPadding="true"
                             android:text="1"
                             android:textColor="@color/textActive"
-                            android:textSize="12sp"
-                            app:fontFamily="@font/nunito_sans_bold" />
+                            android:textSize="12dp"
+                            sothree:fontFamily="@font/nunito_sans_bold" />
 
                         <TextView
                             android:id="@+id/p2_blue"
@@ -367,8 +366,8 @@
                             android:includeFontPadding="true"
                             android:text="1"
                             android:textColor="@color/textActive"
-                            android:textSize="12sp"
-                            app:fontFamily="@font/nunito_sans_bold" />
+                            android:textSize="12dp"
+                            sothree:fontFamily="@font/nunito_sans_bold" />
 
                         <TextView
                             android:id="@+id/p2_pink"
@@ -380,8 +379,8 @@
                             android:includeFontPadding="true"
                             android:text="1"
                             android:textColor="@color/textActive"
-                            android:textSize="12sp"
-                            app:fontFamily="@font/nunito_sans_bold" />
+                            android:textSize="12dp"
+                            sothree:fontFamily="@font/nunito_sans_bold" />
 
                         <TextView
                             android:id="@+id/p2_black"
@@ -393,8 +392,8 @@
                             android:includeFontPadding="true"
                             android:text="1"
                             android:textColor="@color/textActive"
-                            android:textSize="12sp"
-                            app:fontFamily="@font/nunito_sans_bold" />
+                            android:textSize="12dp"
+                            sothree:fontFamily="@font/nunito_sans_bold" />
 
                     </LinearLayout>
 
@@ -410,7 +409,7 @@
                         android:maxLines="1"
                         android:text="Player 2"
                         android:textColor="@color/textActive"
-                        android:textSize="25sp" />
+                        android:textSize="25dp" />
 
                     <View
                         android:id="@+id/p2_indicator"
@@ -434,7 +433,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.9" />
+                sothree:layout_constraintGuide_percent="0.9" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/g_undo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                sothree:layout_constraintGuide_percent="0.15" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/buttons_h"
@@ -442,21 +448,21 @@
                 android:layout_height="wrap_content"
 
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.5" />
+                sothree:layout_constraintGuide_percent="0.5" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/b_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.20" />
+                sothree:layout_constraintGuide_percent="0.20" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/b_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.80" />
+                sothree:layout_constraintGuide_percent="0.80" />
 
             <Button
                 android:id="@+id/b_red"
@@ -470,14 +476,14 @@
                 android:includeFontPadding="false"
                 android:text="15"
                 android:textColor="@color/redCount"
-                android:textSize="70sp"
+                android:textSize="70dp"
                 android:textStyle="bold"
 
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="h,1:1"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/b_left"
-                app:layout_constraintTop_toTopOf="parent" />
+                sothree:layout_constraintBottom_toBottomOf="parent"
+                sothree:layout_constraintDimensionRatio="h,1:1"
+                sothree:layout_constraintLeft_toLeftOf="parent"
+                sothree:layout_constraintRight_toLeftOf="@id/b_left"
+                sothree:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/b_undo"
@@ -486,9 +492,10 @@
                 android:layout_marginBottom="15dp"
                 android:alpha="0.5"
                 android:background="@drawable/bt_undo"
-                app:layout_constraintBottom_toTopOf="@+id/b_miss"
-                app:layout_constraintLeft_toRightOf="@+id/red_center"
-                app:layout_constraintRight_toLeftOf="@+id/red_center" />
+                sothree:layout_constraintBottom_toTopOf="@+id/g_undo"
+                sothree:layout_constraintLeft_toRightOf="@+id/red_center"
+                sothree:layout_constraintRight_toLeftOf="@+id/red_center"
+                sothree:layout_constraintTop_toBottomOf="@+id/g_undo" />
 
             <Button
                 android:id="@+id/b_yellow"
@@ -500,13 +507,13 @@
 
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:textColor="@color/buttonLabel"
-                android:textSize="70sp"
-                app:layout_constraintBottom_toTopOf="@id/buttons_h"
+                android:textSize="70dp"
+                sothree:layout_constraintBottom_toTopOf="@id/buttons_h"
 
-                app:layout_constraintDimensionRatio="h,1:1"
-                app:layout_constraintLeft_toRightOf="@id/b_left"
-                app:layout_constraintRight_toLeftOf="@+id/b_green"
-                app:layout_constraintTop_toTopOf="parent" />
+                sothree:layout_constraintDimensionRatio="h,1:1"
+                sothree:layout_constraintLeft_toRightOf="@id/b_left"
+                sothree:layout_constraintRight_toLeftOf="@+id/b_green"
+                sothree:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/b_green"
@@ -518,12 +525,12 @@
 
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:textColor="@color/buttonLabel"
-                android:textSize="70sp"
-                app:layout_constraintBottom_toTopOf="@id/buttons_h"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintLeft_toRightOf="@id/b_yellow"
-                app:layout_constraintRight_toLeftOf="@id/b_brown"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="70dp"
+                sothree:layout_constraintBottom_toTopOf="@id/buttons_h"
+                sothree:layout_constraintDimensionRatio="1:1"
+                sothree:layout_constraintLeft_toRightOf="@id/b_yellow"
+                sothree:layout_constraintRight_toLeftOf="@id/b_brown"
+                sothree:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/b_brown"
@@ -534,13 +541,13 @@
                 android:background="@drawable/bt_brn"
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:textColor="@color/buttonLabel"
-                android:textSize="70sp"
+                android:textSize="70dp"
 
-                app:layout_constraintBottom_toTopOf="@id/buttons_h"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintLeft_toRightOf="@+id/b_green"
-                app:layout_constraintRight_toLeftOf="@id/b_right"
-                app:layout_constraintTop_toTopOf="parent" />
+                sothree:layout_constraintBottom_toTopOf="@id/buttons_h"
+                sothree:layout_constraintDimensionRatio="1:1"
+                sothree:layout_constraintLeft_toRightOf="@+id/b_green"
+                sothree:layout_constraintRight_toLeftOf="@id/b_right"
+                sothree:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/b_blue"
@@ -552,13 +559,13 @@
 
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:textColor="@color/buttonLabel"
-                android:textSize="70sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="70dp"
+                sothree:layout_constraintBottom_toBottomOf="parent"
 
-                app:layout_constraintDimensionRatio="h,1:1"
-                app:layout_constraintLeft_toRightOf="@id/b_left"
-                app:layout_constraintRight_toLeftOf="@+id/b_pink"
-                app:layout_constraintTop_toBottomOf="@id/buttons_h" />
+                sothree:layout_constraintDimensionRatio="h,1:1"
+                sothree:layout_constraintLeft_toRightOf="@id/b_left"
+                sothree:layout_constraintRight_toLeftOf="@+id/b_pink"
+                sothree:layout_constraintTop_toBottomOf="@id/buttons_h" />
 
             <Button
                 android:id="@+id/b_pink"
@@ -570,12 +577,12 @@
 
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:textColor="@color/buttonLabel"
-                android:textSize="70sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintLeft_toRightOf="@id/b_blue"
-                app:layout_constraintRight_toLeftOf="@+id/b_black"
-                app:layout_constraintTop_toBottomOf="@id/buttons_h" />
+                android:textSize="70dp"
+                sothree:layout_constraintBottom_toBottomOf="parent"
+                sothree:layout_constraintDimensionRatio="1:1"
+                sothree:layout_constraintLeft_toRightOf="@id/b_blue"
+                sothree:layout_constraintRight_toLeftOf="@+id/b_black"
+                sothree:layout_constraintTop_toBottomOf="@id/buttons_h" />
 
             <Button
                 android:id="@+id/b_black"
@@ -587,12 +594,12 @@
 
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:textColor="@color/buttonLabel"
-                android:textSize="70sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintLeft_toRightOf="@id/b_pink"
-                app:layout_constraintRight_toLeftOf="@+id/b_right"
-                app:layout_constraintTop_toBottomOf="@id/buttons_h" />
+                android:textSize="70dp"
+                sothree:layout_constraintBottom_toBottomOf="parent"
+                sothree:layout_constraintDimensionRatio="1:1"
+                sothree:layout_constraintLeft_toRightOf="@id/b_pink"
+                sothree:layout_constraintRight_toLeftOf="@+id/b_right"
+                sothree:layout_constraintTop_toBottomOf="@id/buttons_h" />
 
             <Button
                 android:id="@+id/b_miss"
@@ -601,12 +608,12 @@
                 android:layout_height="0dp"
                 android:background="@drawable/bt_mis"
 
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="h,1:1"
-                app:layout_constraintLeft_toRightOf="@id/b_right"
-                app:layout_constraintRight_toRightOf="parent"
+                sothree:layout_constraintBottom_toBottomOf="parent"
+                sothree:layout_constraintDimensionRatio="h,1:1"
+                sothree:layout_constraintLeft_toRightOf="@id/b_right"
+                sothree:layout_constraintRight_toRightOf="parent"
 
-                app:layout_constraintTop_toTopOf="parent" />
+                sothree:layout_constraintTop_toTopOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
 
