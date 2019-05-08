@@ -86,6 +86,7 @@ public class Match {
         // deals with fouls
         plyr[turn].miss();
         history.push(new Foul(plyr[turn], fouled));
+        plyr[turn].changeFouls(1);
         if( state() == State.FREE_BALL ) {
             int value = ( ball[red].getQuantity() < 1 ) ? lowestAvailableColour() : red ;
             ball[value].removeOne();
@@ -144,8 +145,10 @@ public class Match {
         }
         else if( lastAction instanceof Miss || lastAction instanceof Foul ) {
             // pop most recent break, subtract penalty points if foul
-            if( lastAction instanceof Foul )
-                plyr[turn].subtractScore( ( lastAction.getBall().getValue() < 4 ) ? 4 : lastAction.getBall().getValue() );
+            if( lastAction instanceof Foul ) {
+                plyr[turn].subtractScore((lastAction.getBall().getValue() < 4) ? 4 : lastAction.getBall().getValue());
+                plyr[lastAction.getPlayerID()].changeFouls(-1);
+            }
             plyr[ lastAction.getPlayerID() ].breakPop();
             plyr[ lastAction.getPlayerID() ].changeShotCount(-1);
             // set turn back to previous player

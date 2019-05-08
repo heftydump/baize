@@ -14,6 +14,7 @@ public class Player
     private int totalPoints;
     private int pottedBalls;
     private int shotCount;
+    private int foulCount;
     private Break highest;
 
     public Player(String name, int id) {
@@ -23,7 +24,7 @@ public class Player
         breaks = new Stack<Break>();
         frames = new Stack<Frame>();
 
-        this.totalPoints = this.pottedBalls = this.shotCount = 0;
+        this.totalPoints = this.pottedBalls = this.shotCount = this.foulCount = 0;
         highest = new Break();
     }
 
@@ -48,6 +49,8 @@ public class Player
     public void changePottedBalls( int offset ) { pottedBalls += offset; }
     public void changeShotCount( int offset ) { shotCount += offset; }
     public float getPotSuccess() { return ( shotCount > 0 ) ? (float)pottedBalls/(float)shotCount : 0 ; }
+    public void changeFouls( int offset ) { foulCount += offset; }
+    public int getFoulCount() { return foulCount; }
     public Break getHighest() { return highest; }
 
     public void miss() {

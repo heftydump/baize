@@ -175,7 +175,7 @@ public class MatchActivity extends AppCompatActivity {
             }
         });
 
-        statisticsBox = new TextView[13];
+        statisticsBox = new TextView[15];
         statisticsBox[0] = findViewById(R.id.p1_name_menu);
         statisticsBox[1] = findViewById(R.id.p2_name_main);
         statisticsBox[2] = findViewById(R.id.p1_score_menu);
@@ -189,6 +189,8 @@ public class MatchActivity extends AppCompatActivity {
         statisticsBox[10] = findViewById(R.id.p2_highest);
         statisticsBox[11] = findViewById(R.id.p1_success);
         statisticsBox[12] = findViewById(R.id.p2_success);
+        statisticsBox[13] = findViewById(R.id.p1_fouls);
+        statisticsBox[14] = findViewById(R.id.p2_fouls);
     }
 
     public void initButtons() {
@@ -437,5 +439,7 @@ public class MatchActivity extends AppCompatActivity {
         statisticsBox[10].setText(""+match.player(1).getHighest().getBreak());
         statisticsBox[11].setText(""+(int)(match.player(0).getPotSuccess()*100)+"%");
         statisticsBox[12].setText(""+(int)(match.player(1).getPotSuccess()*100)+"%");
+        statisticsBox[13].setText(""+match.player(0).getFoulCount());
+        statisticsBox[14].setText(""+match.player(1).getFoulCount());
     }
 }
