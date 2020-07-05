@@ -35,13 +35,12 @@ public class MatchActivity extends AppCompatActivity implements GestureDetector.
 
     View mainView;
     Toast mToast;
+    private GestureDetector gestureDetector;
 
     Vibrator vib;
     int vibTime = 100;
 
     Match match;
-    private GestureDetector gestureDetector;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
