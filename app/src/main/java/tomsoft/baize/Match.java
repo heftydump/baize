@@ -45,6 +45,12 @@ public class Match {
     public int atTable() { return turn; }
     public State state() { return stateHistory.peek(); }
     public Action lastAction() { return ( !history.isEmpty() ) ? history.peek() : new Miss(plyr[1]); }
+    public String lastActionAsString() {
+        if ( history.isEmpty() )
+            return "nothing";
+        else
+            return history.peek().getType() + " by " + player(history.peek().getPlayerID()).getName();
+    }
 
     // FRAME METHODS
     public void newFrame() {

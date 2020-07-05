@@ -12,10 +12,11 @@
     sothree:umanoShadowHeight="0dp">
 
     <LinearLayout
+        android:id="@+id/main_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/score_box"
@@ -422,6 +423,7 @@
         </LinearLayout>
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/button_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.85"
@@ -434,13 +436,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 sothree:layout_constraintGuide_percent="0.9" />
-
-            <android.support.constraint.Guideline
-                android:id="@+id/g_undo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                sothree:layout_constraintGuide_percent="0.15" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/buttons_h"
@@ -484,18 +479,6 @@
                 sothree:layout_constraintLeft_toLeftOf="parent"
                 sothree:layout_constraintRight_toLeftOf="@id/b_left"
                 sothree:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/b_undo"
-                android:layout_width="70dp"
-                android:layout_height="35dp"
-                android:layout_marginBottom="15dp"
-                android:alpha="0.5"
-                android:background="@drawable/bt_undo"
-                sothree:layout_constraintBottom_toTopOf="@+id/g_undo"
-                sothree:layout_constraintLeft_toRightOf="@+id/red_center"
-                sothree:layout_constraintRight_toLeftOf="@+id/red_center"
-                sothree:layout_constraintTop_toBottomOf="@+id/g_undo" />
 
             <Button
                 android:id="@+id/b_yellow"

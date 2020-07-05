@@ -5,15 +5,19 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Vibrator;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-public class MatchActivity extends AppCompatActivity {
+public class MatchActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
     SlidingUpPanelLayout slidingMenu;
 
@@ -27,13 +31,17 @@ public class MatchActivity extends AppCompatActivity {
     TextView rQuant;
     View[] indicators;
     Button[] btn;
-    Button undo;
     Button[] menuBtn;
 
+    View mainView;
+    Toast mToast;
+
     Vibrator vib;
-    int vibTime = 60;
+    int vibTime = 100;
 
     Match match;
+    private GestureDetector gestureDetector;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +53,7 @@ public class MatchActivity extends AppCompatActivity {
                             getIntent().getIntExtra("BEST_OF", 1));
         match.newFrame();
 
+        gestureDetector = new GestureDetector(this);
         initUI();
         initButtons();
         draw();
@@ -97,6 +106,9 @@ public class MatchActivity extends AppCompatActivity {
         statusBox[0] = findViewById(R.id.difference);
         statusBox[1] = findViewById(R.id.remaining);
         statusBox[2] = findViewById(R.id.label_remaining);
+
+        mainView = findViewById(R.id.main_view);
+        mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
     }
 
     public void initSlidingPanel() {
@@ -205,7 +217,6 @@ public class MatchActivity extends AppCompatActivity {
         btn[5] = findViewById(R.id.b_blue);
         btn[6] = findViewById(R.id.b_pink);
         btn[7] = findViewById(R.id.b_black);
-        undo = findViewById(R.id.b_undo);
 
         btn[0].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -319,12 +330,10 @@ public class MatchActivity extends AppCompatActivity {
                 return true;
             }
         });
-        undo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vib.vibrate(vibTime);
-                match.undo();
-                draw();
+        mainView.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                gestureDetector.onTouchEvent(event);
+                return true;
             }
         });
     }
@@ -441,5 +450,48 @@ public class MatchActivity extends AppCompatActivity {
         statisticsBox[12].setText(""+(int)(match.player(1).getPotSuccess()*100)+"%");
         statisticsBox[13].setText(""+match.player(0).getFoulCount());
         statisticsBox[14].setText(""+match.player(1).getFoulCount());
+    }
+
+    // fling gesture for undo (overrides needed)
+
+    @Override
+    public boolean onDown(MotionEvent motionEvent) { return false; }
+    @Override
+    public void onShowPress(MotionEvent motionEvent) { }
+    @Override
+    public boolean onSingleTapUp(MotionEvent motionEvent) { return false; }
+    @Override
+    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) { return false; }
+    @Override
+    public void onLongPress(MotionEvent motionEvent) { }
+
+    @Override
+    public boolean onFling(MotionEvent downEvent, MotionEvent moveEvent, float velocityX, float velocityY) {
+        // swipe event code
+        int swipeThreshold = 10;
+        int swipeVelocityThreshold = 10;
+        float diffX = moveEvent.getX() - downEvent.getX();
+        float diffY = moveEvent.getY() - downEvent.getY();
+        boolean result = false;
+
+        // is it a horizontal swipe?
+        if ( Math.abs(diffX) > Math.abs(diffY) ) {
+            if ( Math.abs(diffX) > swipeThreshold && Math.abs(velocityX) > swipeVelocityThreshold ) {
+                // is it a left swipe?
+                if ( diffX <= 0 ) {
+                    onSwipeLeft();
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+    public void onSwipeLeft() {
+        // vibrate and undo
+        vib.vibrate(vibTime);
+        mToast.setText("Undone " + match.lastActionAsString());
+        mToast.show();
+        match.undo();
+        draw();
     }
 }
